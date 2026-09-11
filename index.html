@@ -25,8 +25,7 @@
     margin: 0 !important;
     padding: 0 !important;
     
-    min-height: 450px;
-    height: auto;
+    height: 450px;
     
     overflow: hidden;
     isolation: isolate;
@@ -52,13 +51,13 @@
     position: relative;
     z-index: 1;
     width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0 !important;
     margin: 0 !important;
     box-sizing: border-box;
-    min-height: 450px;
   }
 
   /* SOLID COLOR TEXT BOX */
@@ -96,10 +95,7 @@
   /* Mobile adjustments */
   @media (max-width: 767px) {
     .custom-video-background {
-      min-height: 300px;
-    }
-    .custom-video-content {
-      min-height: 300px;
+      height: 300px;
     }
     .purple-text-box {
       padding: 25px 20px !important;
@@ -130,13 +126,13 @@
     id="my-bg-video"
     autoplay
     muted
-    loop="false"
+    loop
     playsinline
     preload="auto"
     poster=""
   >
     <source
-      src="https://www.image2url.com/r2/default/videos/1789156412985-d40f721c-4cc1-4bb2-b629-7d120ea0a93f.mp4"
+      src="https://www.image2url.com/r2/default/videos/1789167905254-281f2e59-e9ad-4d94-8f40-116b22ded9c6.mp4"
       type="video/mp4"
     >
   </video>
@@ -148,33 +144,3 @@
     </div>
   </div>
 </div>
-
-<!-- Script for smooth video reversal loop -->
-<script>
-  function setupSmoothVideoLoop() {
-    var video = document.getElementById('my-bg-video');
-    if (video) {
-      video.playbackRate = 0.5;
-      
-      // Smooth reversal loop
-      video.addEventListener('ended', function() {
-        video.playbackRate = -0.5;
-        video.play();
-        
-        video.addEventListener('ended', function reverseEnd() {
-          video.playbackRate = 0.5;
-          video.currentTime = 0;
-          video.play();
-          video.removeEventListener('ended', reverseEnd);
-        }, { once: true });
-      }, { once: false });
-      
-      // Performance optimization
-      video.style.willChange = 'transform';
-      video.style.backfaceVisibility = 'hidden';
-    }
-  }
-  
-  setupSmoothVideoLoop();
-  document.addEventListener('DOMContentLoaded', setupSmoothVideoLoop);
-</script>
