@@ -8,82 +8,56 @@
       font-display: swap;
   }
 
-  /* Remove Squarespace default spacing */
-  * {
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  /* Override Squarespace section wrapper - target all parent containers */
-  .custom-video-background,
-  .custom-video-background *,
-  [data-section-id],
-  .sqs-block {
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
   /* Full-section background video */
   .custom-video-background {
-    width: 100vw !important;
+    width: 100%;
+    max-width: 100vw;
     position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw !important;
-    margin-right: -50vw !important;
-    margin: 0 !important;
-    padding: 0 !important;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
     
-    height: 450px !important;
-    min-height: 450px !important;
-    max-height: 450px !important;
+    min-height: 400px;
+    height: auto;
     
-    overflow: hidden !important;
+    overflow: hidden;
     isolation: isolate;
-    flex-shrink: 0 !important;
-    display: flex !important;
   }
 
   .custom-video-background video {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
     width: 100%;
     height: 100%;
     
     object-fit: cover;
+    transform: translate(-50%, -50%);
     z-index: -2;
     pointer-events: none;
-    will-change: transform;
-    backface-visibility: hidden;
   }
 
   /* Content placed over the video */
   .custom-video-content {
     position: relative;
     z-index: 1;
-    width: 100% !important;
-    height: 100% !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    padding: 0 !important;
-    margin: 0 !important;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px; 
     box-sizing: border-box;
-    flex: 1;
+    min-height: 400px;
   }
 
   /* SOLID COLOR TEXT BOX */
   .purple-text-box {
     background-color: #6C4B7D; 
-    padding: 35px 45px !important;
+    padding: 35px 45px;
     border-radius: 12px;
-    max-width: 450px !important; 
-    width: 80% !important;
+    max-width: 450px; 
+    width: 80%;
     text-align: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-    margin: 0 auto !important;
-    flex-shrink: 0 !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); 
   }
 
   /* Text Styling */
@@ -91,14 +65,12 @@
   .purple-text-box p {
     color: #ffffff !important;
     font-family: 'Slop', sans-serif !important;
-    margin: 0 !important;
-    padding: 0 !important;
+    margin: 0;
   }
 
   .purple-text-box h1 {
     font-size: 2rem;
     margin-bottom: 15px !important;
-    letter-spacing: 0.05em;
   }
 
   .purple-text-box p {
@@ -109,14 +81,16 @@
   /* Mobile adjustments */
   @media (max-width: 767px) {
     .custom-video-background {
-      height: 300px !important;
-      min-height: 300px !important;
-      max-height: 300px !important;
+      min-height: 300px;
+    }
+    .custom-video-content {
+      min-height: 300px;
+      padding: 40px 20px;
     }
     .purple-text-box {
-      padding: 25px 20px !important;
-      max-width: 100% !important;
-      width: 90% !important;
+      padding: 25px 20px;
+      max-width: 100%;
+      width: 90%;
     }
     .purple-text-box h1 {
       font-size: 1.6rem;
@@ -160,3 +134,16 @@
     </div>
   </div>
 </div>
+
+<!-- Script to slow down video to 0.5 speed -->
+<script>
+  function slowDownVideo() {
+    var video = document.getElementById('my-bg-video');
+    if (video) {
+      video.playbackRate = 0.5;
+    }
+  }
+  
+  slowDownVideo();
+  document.addEventListener('DOMContentLoaded', slowDownVideo);
+</script>
