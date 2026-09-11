@@ -1,0 +1,135 @@
+<style>
+  /* 1. CUSTOM FONT IMPLEMENTATION */
+  @font-face {
+      font-family: 'Slop';
+      src: url('https://raw.githubusercontent.com/justaethery/squarespace-css-styles/main/SlopRegular-9MOon.ttf.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+  }
+
+  /* Full-section background video */
+  .custom-video-background-cards {
+    width: 100%;
+    max-width: 100vw;
+    position: relative;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    
+    min-height: 400px;
+    height: auto;
+    
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .custom-video-background-cards video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+    z-index: -2;
+    pointer-events: none;
+  }
+
+  /* Content placed over the video */
+  .custom-video-content-cards {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px; 
+    box-sizing: border-box;
+    min-height: 400px;
+  }
+
+  /* SOLID COLOR TEXT BOX */
+  .purple-text-box-cards {
+    background-color: #6C4B7D; 
+    padding: 35px 45px;
+    border-radius: 12px;
+    max-width: 450px; 
+    width: 80%;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); 
+  }
+
+  /* Text Styling */
+  .purple-text-box-cards h1,
+  .purple-text-box-cards p {
+    color: #ffffff !important;
+    font-family: 'Slop', sans-serif !important;
+    margin: 0;
+  }
+
+  .purple-text-box-cards h1 {
+    font-size: 2rem;
+    margin-bottom: 15px !important;
+  }
+
+  .purple-text-box-cards p {
+    line-height: 1.5;
+    font-size: 0.95rem;
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 767px) {
+    .custom-video-background-cards {
+      min-height: 300px;
+    }
+    .custom-video-content-cards {
+      min-height: 300px;
+      padding: 40px 20px;
+    }
+    .purple-text-box-cards {
+      padding: 25px 20px;
+      max-width: 100%;
+      width: 90%;
+    }
+    .purple-text-box-cards h1 {
+      font-size: 1.6rem;
+    }
+    .purple-text-box-cards p {
+      font-size: 0.9rem;
+    }
+  }
+
+  /* Accessibility: reduce motion */
+  @media (prefers-reduced-motion: reduce) {
+    .custom-video-background-cards video {
+      display: none;
+    }
+    .custom-video-background-cards {
+      background: #111;
+    }
+  }
+</style>
+
+<div class="custom-video-background-cards">
+  <video
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    poster=""
+  >
+    <source
+      src="https://www.image2url.com/r2/default/videos/1789170250220-69dd5071-4f9d-4af5-b212-9af90925cade.mp4"
+      type="video/mp4"
+    >
+  </video>
+
+  <div class="custom-video-content-cards">
+    <div class="purple-text-box-cards">
+      <h1>The Story Behind the Cards</h1>
+      <p>With roots stretching from Georgia to the Salem trials, interwoven with a beautiful mix of many cultures, my spiritual journey, and connection to this work, started long before my seven years of practicing tarot and the craft. Since I was little, I have always had a deep interest, and a natural tie to the spiritual realm. I naturally feel and connect with the energies around me, which translates into distinct visual and intuitive information that helps me understand a situation on a much deeper level.</p>
+    </div>
+  </div>
+</div>
