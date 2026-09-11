@@ -8,17 +8,24 @@
       font-display: swap;
   }
 
+  /* Remove Squarespace default spacing */
+  * {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
   /* Full-section background video */
   .custom-video-background {
-    width: 100%;
-    max-width: 100vw;
+    width: 100vw;
     position: relative;
-    margin-left: calc(-50vw + 50%);
-    margin-right: calc(-50vw + 50%);
-    margin: 0;
-    padding: 0;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    margin: 0 !important;
+    padding: 0 !important;
     
-    min-height: 400px;
+    min-height: 450px;
     height: auto;
     
     overflow: hidden;
@@ -48,21 +55,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0;
-    margin: 0;
+    padding: 0 !important;
+    margin: 0 !important;
     box-sizing: border-box;
-    min-height: 400px;
+    min-height: 450px;
   }
 
   /* SOLID COLOR TEXT BOX */
   .purple-text-box {
     background-color: #6C4B7D; 
-    padding: 30px 40px;
+    padding: 35px 45px !important;
     border-radius: 12px;
-    max-width: 500px; 
-    width: 85%;
+    max-width: 450px; 
+    width: 80%;
     text-align: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    margin: 0 !important;
   }
 
   /* Text Styling */
@@ -70,18 +78,19 @@
   .purple-text-box p {
     color: #ffffff !important;
     font-family: 'Slop', sans-serif !important;
-    margin: 0;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
   .purple-text-box h1 {
-    font-size: 2.2rem;
+    font-size: 2rem;
     margin-bottom: 15px !important;
     letter-spacing: 0.05em;
   }
 
   .purple-text-box p {
-    line-height: 1.6;
-    font-size: 1rem;
+    line-height: 1.5;
+    font-size: 0.95rem;
   }
 
   /* Mobile adjustments */
@@ -91,19 +100,17 @@
     }
     .custom-video-content {
       min-height: 300px;
-      padding: 0;
     }
     .purple-text-box {
-      padding: 25px 20px;
+      padding: 25px 20px !important;
       max-width: 100%;
       width: 90%;
     }
     .purple-text-box h1 {
-      font-size: 1.8rem;
-      margin-bottom: 12px !important;
+      font-size: 1.6rem;
     }
     .purple-text-box p {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
     }
   }
 
@@ -123,7 +130,7 @@
     id="my-bg-video"
     autoplay
     muted
-    loop
+    loop="false"
     playsinline
     preload="auto"
     poster=""
@@ -142,21 +149,32 @@
   </div>
 </div>
 
-<!-- Script to smooth video and optimize playback -->
+<!-- Script for smooth video reversal loop -->
 <script>
-  function optimizeVideo() {
+  function setupSmoothVideoLoop() {
     var video = document.getElementById('my-bg-video');
     if (video) {
       video.playbackRate = 0.5;
-      // Optimize performance
+      
+      // Smooth reversal loop
+      video.addEventListener('ended', function() {
+        video.playbackRate = -0.5;
+        video.play();
+        
+        video.addEventListener('ended', function reverseEnd() {
+          video.playbackRate = 0.5;
+          video.currentTime = 0;
+          video.play();
+          video.removeEventListener('ended', reverseEnd);
+        }, { once: true });
+      }, { once: false });
+      
+      // Performance optimization
       video.style.willChange = 'transform';
-      // Smooth playback with requestAnimationFrame
-      video.addEventListener('play', function() {
-        video.style.backfaceVisibility = 'hidden';
-      });
+      video.style.backfaceVisibility = 'hidden';
     }
   }
   
-  optimizeVideo();
-  document.addEventListener('DOMContentLoaded', optimizeVideo);
+  setupSmoothVideoLoop();
+  document.addEventListener('DOMContentLoaded', setupSmoothVideoLoop);
 </script>
