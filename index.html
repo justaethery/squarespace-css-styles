@@ -15,6 +15,8 @@
     position: relative;
     margin-left: calc(-50vw + 50%);
     margin-right: calc(-50vw + 50%);
+    margin: 0;
+    padding: 0;
     
     min-height: 400px;
     height: auto;
@@ -34,6 +36,8 @@
     transform: translate(-50%, -50%);
     z-index: -2;
     pointer-events: none;
+    will-change: transform;
+    backface-visibility: hidden;
   }
 
   /* Content placed over the video */
@@ -44,7 +48,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 60px 20px; 
+    padding: 0;
+    margin: 0;
     box-sizing: border-box;
     min-height: 400px;
   }
@@ -52,10 +57,10 @@
   /* SOLID COLOR TEXT BOX */
   .purple-text-box {
     background-color: #6C4B7D; 
-    padding: 40px 50px;
+    padding: 30px 40px;
     border-radius: 12px;
-    max-width: 600px; 
-    width: 100%;
+    max-width: 500px; 
+    width: 85%;
     text-align: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); 
   }
@@ -70,7 +75,7 @@
 
   .purple-text-box h1 {
     font-size: 2.2rem;
-    margin-bottom: 20px !important;
+    margin-bottom: 15px !important;
     letter-spacing: 0.05em;
   }
 
@@ -86,14 +91,16 @@
     }
     .custom-video-content {
       min-height: 300px;
-      padding: 40px 20px;
+      padding: 0;
     }
     .purple-text-box {
-      padding: 30px 20px;
+      padding: 25px 20px;
       max-width: 100%;
+      width: 90%;
     }
     .purple-text-box h1 {
       font-size: 1.8rem;
+      margin-bottom: 12px !important;
     }
     .purple-text-box p {
       font-size: 0.95rem;
@@ -135,15 +142,21 @@
   </div>
 </div>
 
-<!-- Script to slow down video to 0.5 speed -->
+<!-- Script to smooth video and optimize playback -->
 <script>
-  function slowDownVideo() {
+  function optimizeVideo() {
     var video = document.getElementById('my-bg-video');
     if (video) {
       video.playbackRate = 0.5;
+      // Optimize performance
+      video.style.willChange = 'transform';
+      // Smooth playback with requestAnimationFrame
+      video.addEventListener('play', function() {
+        video.style.backfaceVisibility = 'hidden';
+      });
     }
   }
   
-  slowDownVideo();
-  document.addEventListener('DOMContentLoaded', slowDownVideo);
+  optimizeVideo();
+  document.addEventListener('DOMContentLoaded', optimizeVideo);
 </script>
