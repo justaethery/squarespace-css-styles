@@ -1,0 +1,148 @@
+<style>
+  /* 1. CUSTOM FONT IMPLEMENTATION */
+  @font-face {
+      font-family: 'Slop';
+      src: url('https://cdn.jsdelivr.net/gh/justaethery/squarespace-css-styles@main/Slop-Regular.woff2') format('woff2'),
+           url('https://cdn.jsdelivr.net/gh/justaethery/squarespace-css-styles@main/Slop-Regular.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+  }
+
+  /* Full-section background video */
+  .custom-video-background {
+    width: 100%;
+    max-width: 100vw;
+    position: relative;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    
+    min-height: 400px;
+    height: auto;
+    
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .custom-video-background video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+    z-index: -2;
+    pointer-events: none;
+  }
+
+  /* Content placed over the video */
+  .custom-video-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px; 
+    box-sizing: border-box;
+    min-height: 400px;
+  }
+
+  /* SOLID COLOR TEXT BOX */
+  .purple-text-box {
+    background-color: #6C4B7D; 
+    padding: 40px 50px;
+    border-radius: 12px;
+    max-width: 900px; 
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); 
+  }
+
+  /* Text Styling */
+  .purple-text-box h1,
+  .purple-text-box p {
+    color: #ffffff !important;
+    font-family: 'Slop', sans-serif !important;
+    margin: 0;
+  }
+
+  .purple-text-box h1 {
+    font-size: 3.5rem;
+    margin-bottom: 25px !important;
+  }
+
+  .purple-text-box p {
+    line-height: 1.8;
+    font-size: 1.25rem;
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 767px) {
+    .custom-video-background {
+      min-height: 300px;
+    }
+    .custom-video-content {
+      min-height: 300px;
+      padding: 40px 20px;
+    }
+    .purple-text-box {
+      padding: 30px 20px;
+    }
+    .purple-text-box h1 {
+      font-size: 2.5rem;
+    }
+    .purple-text-box p {
+      font-size: 1.1rem;
+    }
+  }
+
+  /* Accessibility: reduce motion */
+  @media (prefers-reduced-motion: reduce) {
+    .custom-video-background video {
+      display: none;
+    }
+    .custom-video-background {
+      background: #111;
+    }
+  }
+</style>
+
+<div class="custom-video-background">
+  <video
+    id="my-bg-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    poster=""
+  >
+    <source
+      src="https://www.image2url.com/r2/default/videos/1789156412985-d40f721c-4cc1-4bb2-b629-7d120ea0a93f.mp4"
+      type="video/mp4"
+    >
+  </video>
+
+  <div class="custom-video-content">
+    <div class="purple-text-box">
+      <h1>My Philosophy & Approach</h1>
+      <p>When we work together, my absolute first priority is your comfort. This practice is a completely safe, welcoming, and hate-free space where everyone is honored and respected just as they are. I use the cards to ground the intuitive and visual information I receive, offering you a clear reflection of where you are right now. My intention is never to tell you what to do, but to provide the profound insight you need to confidently navigate your options, always honoring that you are the architect of your own life.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Script to slow down video to 0.5 speed -->
+<script>
+  function slowDownVideo() {
+    var video = document.getElementById('my-bg-video');
+    if (video) {
+      video.playbackRate = 0.5;
+    }
+  }
+  
+  slowDownVideo();
+  document.addEventListener('DOMContentLoaded', slowDownVideo);
+</script>
