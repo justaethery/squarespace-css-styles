@@ -14,6 +14,12 @@
     padding: 0 !important;
   }
 
+  /* Override parent container */
+  body > *, [role="main"] > * {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
   /* Full-section background video */
   .custom-video-background {
     width: 100vw;
@@ -26,9 +32,11 @@
     padding: 0 !important;
     
     height: 450px;
+    max-height: 450px;
     
     overflow: hidden;
     isolation: isolate;
+    flex-shrink: 0;
   }
 
   .custom-video-background video {
@@ -48,8 +56,10 @@
 
   /* Content placed over the video */
   .custom-video-content {
-    position: relative;
+    position: absolute;
     z-index: 1;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     display: flex;
@@ -70,6 +80,7 @@
     text-align: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
     margin: 0 !important;
+    flex-shrink: 0;
   }
 
   /* Text Styling */
@@ -96,6 +107,7 @@
   @media (max-width: 767px) {
     .custom-video-background {
       height: 300px;
+      max-height: 300px;
     }
     .purple-text-box {
       padding: 25px 20px !important;
