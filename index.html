@@ -113,7 +113,6 @@
 
 <div class="custom-video-background">
   <video
-    id="my-bg-video"
     autoplay
     muted
     loop
@@ -134,16 +133,3 @@
     </div>
   </div>
 </div>
-
-<!-- Script to slow down video to 0.5 speed -->
-<script>
-  function slowDownVideo() {
-    var video = document.getElementById('my-bg-video');
-    if (video) {
-      video.playbackRate = 0.5;
-    }
-  }
-  
-  slowDownVideo();
-  document.addEventListener('DOMContentLoaded', slowDownVideo);
-</script>
